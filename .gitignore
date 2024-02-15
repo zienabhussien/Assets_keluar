@@ -1,0 +1,4 @@
+# Project exclude paths
+/.gradle/
+/zxing-android-embedded/build/
+/zxing-android-embedded/build/intermediates/javac/debug/classes/
