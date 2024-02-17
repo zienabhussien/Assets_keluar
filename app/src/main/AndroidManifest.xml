@@ -19,7 +19,6 @@
         android:name="android.hardware.camera.front"
         android:required="false" />
 
-
     <application
         android:name="com.salor.ventgo.ui.MyApplication"
         android:allowBackup="true"
@@ -29,7 +28,8 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:appComponentFactory">
         <activity
             android:name="com.salor.ventgo.ui.activity.login.SplashScreenActivity"
             android:screenOrientation="portrait"
