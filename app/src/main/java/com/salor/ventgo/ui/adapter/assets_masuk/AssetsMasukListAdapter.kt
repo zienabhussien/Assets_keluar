@@ -2,13 +2,13 @@ package com.salor.ventgo.ui.adapter.assets_masuk
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.widget.CardView
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
 import com.bottlerocketstudios.barcode.generation.ui.BarcodeView
 
 import com.salor.ventgo.R
@@ -19,7 +19,8 @@ import com.salor.ventgo.ui.activity.assets_masuk.list.AssetsMasukListActivity
 import com.salor.ventgo.ui.activity.assets_masuk.list.detail_scan.AssetsMasukDetailScanActivity
 import com.google.gson.Gson
 
-class AssetsMasukListAdapter(private val context: Activity, private val item_homes: List<AssetListBarangMasuk>,var assetListActivity : AssetsMasukListActivity) : RecyclerView.Adapter<AssetsMasukListAdapter.MyViewHolder>() {
+class AssetsMasukListAdapter(private val context: Activity, private val item_homes: List<AssetListBarangMasuk>,
+                             var assetListActivity : AssetsMasukListActivity) : RecyclerView.Adapter<AssetsMasukListAdapter.MyViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

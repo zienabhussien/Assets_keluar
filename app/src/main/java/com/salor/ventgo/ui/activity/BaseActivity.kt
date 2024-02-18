@@ -11,8 +11,6 @@ import android.net.NetworkInfo
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.support.annotation.StringRes
-import android.support.v7.app.AppCompatActivity
 
 import android.text.Html
 import android.text.InputType
@@ -29,6 +27,8 @@ import android.webkit.MimeTypeMap
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import com.salor.ventgo.R
 import com.salor.ventgo.helper.See
 
@@ -85,7 +85,6 @@ open class BaseActivity : AppCompatActivity() {
         toast(getString(message))
     }
 
-    @androidx.annotation.RequiresApi(Build.VERSION_CODES.KITKAT)
     fun setAnimViewVisible(lParentContent : View, vTarget : View, duration : Long) {
 
         try {

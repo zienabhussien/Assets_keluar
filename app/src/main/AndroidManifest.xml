@@ -8,8 +8,10 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -28,12 +30,12 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"
-        tools:replace="android:appComponentFactory">
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name="com.salor.ventgo.ui.activity.login.SplashScreenActivity"
             android:screenOrientation="portrait"
-            android:exported="true">
+            android:exported="true"
+            tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,46 +45,66 @@
 
         <activity
             android:name="com.salor.ventgo.ui.activity.HomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.login.LoginActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.profile.ProfileActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_opname_assets.ListGudangActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.barang_assets.ListBarangActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.barang_assets.detail_barang.DetailBarangActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.barang_assets.detail_gudang.DetailGudangActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_opname_assets.riwayat.StockOpnameHistoryListActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_opname_assets.list_scanned_product.StockOpnameListScannedProductActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_opname_assets.list_scanned_product.detail.StockOpnameListDetailScannedProductActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <!--<activity-->
         <!--android:name=".ui.activity.stock_opname_assets.scanner.ScannerActivity"-->
@@ -92,129 +114,185 @@
         <activity
             android:name="com.salor.ventgo.ui.activity.assets_keluar.ScannerActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.assets_keluar.list.AssetsKeluarListActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.assets_keluar.list.DetailAssetsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.assets_masuk.ScannerActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.assets_keluar.list.detail_scan.AssetsKeluarDetailScanActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.assets_keluar.FormAssetsKeluarActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.assets_masuk.FormAssetsMasukActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.assets_masuk.list.DetailAssetsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.assets_masuk.list.AssetsMasukListActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.assets_masuk.list.detail_scan.AssetsMasukDetailScanActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_masuk.ScannerActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_masuk.FormStockMasukActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_masuk.list.StockMasukListActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_masuk.list.detail.StockMasukDetailBarangActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_keluar.ScannerActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_keluar.FormStockKeluarActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_keluar.list.StockKeluarListActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_keluar.list.detail.StockKeluarDetailBarangActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.barang_stock.ListBarangActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.barang_stock.detail_stock.DetailBarangStockActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_opname_stock.ListGudangActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_opname_stock.riwayat.StockOpnameHistoryListActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_opname_stock.scanner.ScannerActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_opname_stock.list_scanned_product.StockOpnameListScannedProductActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.login.ForgotPasswordActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.profile.ChangePasswordActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
         <activity
             android:name="com.salor.ventgo.ui.activity.profile.camera.UpdateProfileActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
 
         <activity
             android:name="com.salor.ventgo.ui.activity.stock_opname_assets.list_scanned_product.scan.ScannerActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
 
     </application>
 

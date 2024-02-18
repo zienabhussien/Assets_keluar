@@ -115,7 +115,7 @@
 
         </LinearLayout>
 
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -144,14 +144,14 @@
             </LinearLayout>
 
 
-        </android.support.design.widget.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
 
-            <android.support.v4.widget.NestedScrollView
+            <androidx.core.widget.NestedScrollView
                 android:id="@+id/nestedscrollview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -162,21 +162,21 @@
                     android:orientation="vertical">
 
 
-                    <android.support.v7.widget.RecyclerView
+                    <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvList"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/margin10">
-
-
-                    </android.support.v7.widget.RecyclerView>
+                        android:paddingTop="@dimen/margin10"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 
                 </LinearLayout>
 
-            </android.support.v4.widget.NestedScrollView>
+            </androidx.core.widget.NestedScrollView>
 
-            <include layout="@layout/item_empty_data"/>
+            <include
+                android:id="@+id/layout_empty_data"
+                layout="@layout/item_empty_data"/>
 
         </RelativeLayout>
 

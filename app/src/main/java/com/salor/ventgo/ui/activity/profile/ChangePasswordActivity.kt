@@ -1,19 +1,19 @@
 package com.salor.ventgo.ui.activity.profile
 
 import android.app.Dialog
-import android.arch.persistence.room.Room
 import android.content.Context
 import android.graphics.Point
 import android.os.Bundle
 import android.os.Handler
-import android.support.v7.app.ActionBar
-import android.support.v7.widget.Toolbar
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.TextView
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.widget.Toolbar
+import androidx.room.Room
 import androidx.transition.TransitionManager
 import com.salor.ventgo.R
 import com.salor.ventgo.db.DBS

@@ -3,7 +3,6 @@ package com.salor.ventgo.ui.activity.profile
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.arch.persistence.room.Room
 import android.content.Context
 import android.content.Intent
 import android.graphics.Point
@@ -19,6 +18,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.Toast
+import androidx.room.Room
 import androidx.transition.TransitionManager
 import com.salor.ventgo.R
 import com.salor.ventgo.db.DBS

@@ -2,17 +2,18 @@ package com.salor.ventgo.ui.adapter.assets_masuk.detail_assets
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.widget.CardView
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
 
 import com.salor.ventgo.R
 import com.salor.ventgo.ui.activity.assets_masuk.list.detail_scan.AssetsMasukDetailScanActivity
 
-class AssetsMasukListScanAdapter(private val context: Activity, private val item_homes: List<String>) : RecyclerView.Adapter<AssetsMasukListScanAdapter.MyViewHolder>() {
+class AssetsMasukListScanAdapter(private val context: Activity, private val item_homes: List<String>) :
+    RecyclerView.Adapter<AssetsMasukListScanAdapter.MyViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

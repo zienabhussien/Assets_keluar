@@ -8,12 +8,11 @@ import android.graphics.RectF
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.support.v7.app.ActionBar
-import android.support.v7.widget.Toolbar
 import android.util.Base64
 import android.util.Log
 import android.view.*
 import android.widget.*
+import androidx.appcompat.app.ActionBar
 import com.salor.ventgo.R
 import com.salor.ventgo.db.DBS
 import com.salor.ventgo.helper.Cons
@@ -352,7 +351,7 @@ class UpdateProfileActivity : BaseActivity() {
 //    }
 
     fun initToolbar(vTitle: String) {
-        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbar) as androidx.appcompat.widget.Toolbar
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 

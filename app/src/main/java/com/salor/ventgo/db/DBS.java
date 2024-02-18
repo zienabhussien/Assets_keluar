@@ -1,8 +1,9 @@
 package com.salor.ventgo.db;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.support.v4.app.Fragment;
+import android.content.SharedPreferences;;
+
+import androidx.fragment.app.Fragment;
 
 import com.salor.ventgo.helper.Cons;
 
@@ -17,7 +18,7 @@ public class DBS {
     private SharedPreferences.Editor editor;
 
     public DBS(Context context) {
-        pref = context.getSharedPreferences(Cons.PREF_NAME, Cons.PRIVATE_MODE);
+        pref = context.getSharedPreferences(Cons.PREF_NAME, Context.MODE_PRIVATE);
     }
 
     public static DBS with(Fragment fragment) {

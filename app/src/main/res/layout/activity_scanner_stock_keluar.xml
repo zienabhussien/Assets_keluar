@@ -182,19 +182,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
+.
+            <!-- //android:onClick="switchFlashlight" -->
 
-            //android:onClick="switchFlashlight"
+             <ImageView
+                 android:id="@+id/ivFlash"
+                 android:layout_marginLeft="@dimen/margin15"
+                 android:src="@drawable/ic_flash_off"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
 
-            <ImageView
-                android:id="@+id/ivFlash"
-                android:layout_marginLeft="@dimen/margin15"
-                android:src="@drawable/ic_flash_off"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+         </LinearLayout>
 
-        </LinearLayout>
-
-        <!--<Button-->
+         <!--<Button-->
             <!--android:background="@drawable/bg_rounded_btn_scan_history"-->
             <!--android:id="@+id/btnScanHistory"-->
             <!--fontPath="fonts/Poppins-Bold.ttf"-->

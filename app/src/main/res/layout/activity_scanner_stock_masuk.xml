@@ -183,7 +183,7 @@
                 android:layout_height="wrap_content"/>
 
 
-            //android:onClick="switchFlashlight"
+            <!-- //android:onClick="switchFlashlight" -->
 
             <ImageView
                 android:id="@+id/ivFlash"

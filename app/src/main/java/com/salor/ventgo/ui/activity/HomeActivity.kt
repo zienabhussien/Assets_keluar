@@ -2,7 +2,6 @@ package com.salor.ventgo.ui.activity
 
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.arch.persistence.room.Room
 import android.content.Context
 import android.content.Intent
 import android.graphics.Point
@@ -18,6 +17,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.room.Room
 import com.salor.ventgo.R
 import com.salor.ventgo.databinding.ActivityHomeBinding
 import com.salor.ventgo.databinding.DialogTopHomeBinding

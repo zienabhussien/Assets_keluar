@@ -1,7 +1,7 @@
 package com.salor.ventgo.obj.login;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.salor.ventgo.db.dao_user.Database;
 import com.google.gson.annotations.Expose;

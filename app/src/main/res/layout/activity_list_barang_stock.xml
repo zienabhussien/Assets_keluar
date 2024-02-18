@@ -124,7 +124,7 @@
             android:layout_height="match_parent">
 
 
-            <android.support.v4.widget.NestedScrollView
+            <androidx.core.widget.NestedScrollView
                 android:id="@+id/nestedscrollview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -138,7 +138,7 @@
                     />
 
 
-            </android.support.v4.widget.NestedScrollView>
+            </androidx.core.widget.NestedScrollView>
 
             <include
                 android:id="@+id/layout_empty_data"

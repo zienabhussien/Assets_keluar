@@ -15,11 +15,11 @@ import android.graphics.Point
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.*
 import android.widget.*
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.salor.ventgo.R
 import com.salor.ventgo.helper.Cons
 import com.salor.ventgo.helper.Loading
@@ -37,11 +37,11 @@ import com.google.zxing.ResultPoint
 import com.google.zxing.client.android.InactivityTimer
 import com.google.zxing.client.android.Intents
 import com.journeyapps.barcodescanner.*
+import com.salor.ventgo.databinding.ActivityScannerStockOpnameBinding
+import com.salor.ventgo.databinding.ItemDialogInputStockQuantityStockBinding
+import com.salor.ventgo.databinding.ItemDialogScannerStockOpnameInputKodeBarangBinding
+import com.salor.ventgo.databinding.ItemDialogStockOpnameScanSuccessBinding
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_scanner_stock_opname.*
-import kotlinx.android.synthetic.main.item_dialog_input_stock_quantity_stock.*
-import kotlinx.android.synthetic.main.item_dialog_scanner_stock_opname_input_kode_barang.*
-import kotlinx.android.synthetic.main.item_dialog_stock_opname_scan_success.*
 import okhttp3.ResponseBody
 import org.json.JSONException
 import org.json.JSONObject
@@ -62,10 +62,11 @@ class ScannerActivity : BaseActivity(), DecoratedBarcodeView.TorchListener {
     var capture: CaptureManager? = null
     var barcodeScannerView: DecoratedBarcodeView? = null
     var switchFlashlightButton: Button? = null
-
+    lateinit var binding: ActivityScannerStockOpnameBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_scanner_stock_opname)
+        binding = ActivityScannerStockOpnameBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setStatusBarTransparent()
 
@@ -82,11 +83,11 @@ class ScannerActivity : BaseActivity(), DecoratedBarcodeView.TorchListener {
         // if the device does not have flashlight in its camera,
         // then remove the switch flashlight button...
         if (!hasFlash()) {
-            ivFlash.setImageResource(R.drawable.ic_flash_off)
+            binding.ivFlash.setImageResource(R.drawable.ic_flash_off)
         }
 
 
-        ivBack.setOnClickListener {
+        binding.ivBack.setOnClickListener {
             onBackPressed()
         }
 
@@ -114,29 +115,29 @@ class ScannerActivity : BaseActivity(), DecoratedBarcodeView.TorchListener {
 
         }
 
-        ivFlash.setOnClickListener({
+        binding.ivFlash.setOnClickListener {
 
 
             if (isFlash) {
-                ivFlash.setImageResource(R.drawable.ic_flash_off)
+                binding.ivFlash.setImageResource(R.drawable.ic_flash_off)
                 barcodeScannerView!!.setTorchOff()
 
                 isFlash = false
 
             } else {
-                ivFlash.setImageResource(R.drawable.ic_flash_on)
+                binding.ivFlash.setImageResource(R.drawable.ic_flash_on)
                 barcodeScannerView!!.setTorchOn()
 
                 isFlash = true
             }
 
-        })
+        }
 
 
-        ivInputCode.setOnClickListener({
+        binding.ivInputCode.setOnClickListener {
             barcodeScannerView!!.pause()
             dialogInputCode()
-        })
+        }
     }
 
 
@@ -185,11 +186,11 @@ class ScannerActivity : BaseActivity(), DecoratedBarcodeView.TorchListener {
     }
 
     override fun onTorchOn() {
-        ivFlash.setImageResource(R.drawable.ic_flash_on)
+        binding.ivFlash.setImageResource(R.drawable.ic_flash_on)
     }
 
     override fun onTorchOff() {
-        ivFlash.setImageResource(R.drawable.ic_flash_off)
+        binding.ivFlash.setImageResource(R.drawable.ic_flash_off)
     }
 
     class CaptureManager(private val activity: ScannerActivity, private val barcodeView: DecoratedBarcodeView, val dataRiwayat: RiwayatStockOpnameList) {
@@ -792,26 +793,23 @@ class ScannerActivity : BaseActivity(), DecoratedBarcodeView.TorchListener {
             try {
 
                 val pDialog = Dialog(activity, R.style.DialogLight)
-                pDialog!!.window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
-                pDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
-                pDialog!!.setContentView(R.layout.item_dialog_stock_opname_scan_success)
-                pDialog!!.setCancelable(false)
-
-                val btnListProduk = pDialog.btnListProduk
-                val btnScanResume = pDialog.btnScanResume
-                val tvContentDialog = pDialog.tvContentDialog
+                pDialog.window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
+                pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                val binding = ItemDialogStockOpnameScanSuccessBinding.inflate(LayoutInflater.from(activity.applicationContext))
+                pDialog.setContentView(binding.root)
+                pDialog.setCancelable(false)
 
 
-                tvContentDialog.text = activity.resources.getString(R.string.label_stockopname_asset_added_scan_1) + " " + sku + " " + activity.resources.getString(R.string.label_stockopname_asset_added_scan_2)
+                binding.tvContentDialog.text = activity.resources.getString(R.string.label_stockopname_asset_added_scan_1) + " " + sku + " " + activity.resources.getString(R.string.label_stockopname_asset_added_scan_2)
 
-                btnListProduk.setOnClickListener {
+                binding.btnListProduk.setOnClickListener {
 
                     pDialog.dismiss()
                     activity.onBackPressed()
                 }
 
 
-                btnScanResume.setOnClickListener {
+                binding.btnScanResume.setOnClickListener {
 
                     barcodeView.resume()
                     barcodeView.decodeSingle(callback)
@@ -866,24 +864,21 @@ class ScannerActivity : BaseActivity(), DecoratedBarcodeView.TorchListener {
         try {
 
             val pDialog = Dialog(this, R.style.DialogLight)
-            pDialog!!.window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
-            pDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            pDialog!!.setContentView(R.layout.item_dialog_scanner_stock_opname_input_kode_barang)
-            pDialog!!.setCancelable(false)
-
-            val etCode = pDialog.etCode
-            val ivCloseDialog = pDialog.ivCloseDialog
-            val btnCheck = pDialog.btnCheck
+            pDialog.window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
+            pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            val binding = ItemDialogScannerStockOpnameInputKodeBarangBinding.inflate(LayoutInflater.from(this))
+            pDialog.setContentView(binding.root)
+            pDialog.setCancelable(false)
 
 
-            btnCheck.setOnClickListener(View.OnClickListener {
+            binding.btnCheck.setOnClickListener(View.OnClickListener {
 
-                val str_code = etCode.text.toString()
+                val str_code = binding.etCode.text.toString()
 
                 if (str_code == "") {
 
-                    etCode.requestFocus()
-                    etCode.error = resources.getString(R.string.label_form_wajib_diisi)
+                    binding.etCode.requestFocus()
+                    binding.etCode.error = resources.getString(R.string.label_form_wajib_diisi)
 
                 } else {
                     pDialog.dismiss()
@@ -894,7 +889,7 @@ class ScannerActivity : BaseActivity(), DecoratedBarcodeView.TorchListener {
 
             })
 
-            ivCloseDialog.setOnClickListener(View.OnClickListener {
+            binding.ivCloseDialog.setOnClickListener(View.OnClickListener {
                 pDialog.dismiss()
 
                 barcodeScannerView!!.resume()
@@ -1062,18 +1057,14 @@ class ScannerActivity : BaseActivity(), DecoratedBarcodeView.TorchListener {
         try {
 
             val pDialog = Dialog(this, R.style.DialogLight)
-            pDialog!!.window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
-            pDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            pDialog!!.setContentView(R.layout.item_dialog_input_stock_quantity_stock)
-            pDialog!!.setCancelable(false)
-
-            val rBack: RelativeLayout = pDialog.findViewById(R.id.rBack)
-            val spTipeQuantity = pDialog.spTipeQuantity
-            val btnSubmit = pDialog.btnSubmit
-            val etQty = pDialog.etQty
+            pDialog.window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
+            pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            val binding = ItemDialogInputStockQuantityStockBinding.inflate(LayoutInflater.from(this))
+            pDialog.setContentView(binding.root)
+            pDialog.setCancelable(false)
 
 
-            rBack.setOnClickListener {
+            binding.rBack.setOnClickListener {
                 val intent = Intent()
                 setResult(Cons.RES_RESUME_SCAN,intent)
                 finish()
@@ -1096,10 +1087,10 @@ class ScannerActivity : BaseActivity(), DecoratedBarcodeView.TorchListener {
 
             val spinnerAdapterQuantity = ArrayAdapter(this, R.layout.spinner_item_default, listSpinnerTipeQuantity)
             spinnerAdapterQuantity.setDropDownViewResource(R.layout.spinner_dropdown_item_default)
-            spTipeQuantity.setAdapter(spinnerAdapterQuantity)
+            binding.spTipeQuantity.setAdapter(spinnerAdapterQuantity)
 
 
-            spTipeQuantity.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            binding.spTipeQuantity.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
 
                     str_selected_tipe_quantity = listSpinnerTipeQuantity.get(i)
@@ -1113,12 +1104,12 @@ class ScannerActivity : BaseActivity(), DecoratedBarcodeView.TorchListener {
                 }
             }
 
-            btnSubmit.setOnClickListener(View.OnClickListener {
+            binding.btnSubmit.setOnClickListener(View.OnClickListener {
 
-                qty = etQty.text.toString()
+                qty = binding.etQty.text.toString()
 
                 if (qty == "") {
-                    etQty.error = resources.getString(R.string.label_form_wajib_diisi)
+                    binding.etQty.error = resources.getString(R.string.label_form_wajib_diisi)
                 } else if (str_selected_tipe_quantity == "") {
 
                     See.toast(this@ScannerActivity, resources.getString(R.string.label_isikan_tipe_quantity_dahulu))
@@ -1160,14 +1151,15 @@ class ScannerActivity : BaseActivity(), DecoratedBarcodeView.TorchListener {
         try {
 
             val pDialog = Dialog(this, R.style.DialogLight)
-            pDialog!!.window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
-            pDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            pDialog!!.setContentView(R.layout.item_dialog_stock_opname_scan_success)
-            pDialog!!.setCancelable(false)
+            pDialog.window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
+            pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            val binding = ItemDialogStockOpnameScanSuccessBinding.inflate(LayoutInflater.from(this))
+            pDialog.setContentView(binding.root)
+            pDialog.setCancelable(false)
 
-            val btnListProduk = pDialog.btnListProduk
-            val btnScanResume = pDialog.btnScanResume
-            val tvContentDialog = pDialog.tvContentDialog
+            val btnListProduk = binding.btnListProduk
+            val btnScanResume = binding.btnScanResume
+            val tvContentDialog = binding.tvContentDialog
 
 
             tvContentDialog.text = resources.getString(R.string.label_stockopname_asset_added_scan_1) + " " + sku + " " + resources.getString(R.string.label_stockopname_asset_added_scan_2)

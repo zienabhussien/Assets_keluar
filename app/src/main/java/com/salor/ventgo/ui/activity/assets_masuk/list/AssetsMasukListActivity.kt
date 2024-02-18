@@ -6,13 +6,12 @@ import android.content.Intent
 import android.graphics.Point
 import android.os.Bundle
 import android.os.Handler
-import android.support.transition.TransitionManager
-import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.*
+import androidx.transition.TransitionManager
 import com.salor.ventgo.R
 import com.salor.ventgo.db.DBS
 import com.salor.ventgo.helper.Cons
@@ -25,10 +24,9 @@ import com.salor.ventgo.ui.activity.BaseActivity
 import com.salor.ventgo.ui.activity.assets_masuk.ScannerActivity
 import com.salor.ventgo.ui.adapter.assets_masuk.AssetsMasukListAdapter
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_assets_masuk_list.*
-import kotlinx.android.synthetic.main.dialog_failure_custom.*
-import kotlinx.android.synthetic.main.item_dialog_tambah_stock_opname.*
-import kotlinx.android.synthetic.main.item_empty_data.*
+import com.salor.ventgo.databinding.ActivityAssetsMasukListBinding
+import com.salor.ventgo.databinding.DialogFailureCustomBinding
+import com.salor.ventgo.databinding.ItemDialogTambahStockOpnameBinding
 import okhttp3.ResponseBody
 import org.json.JSONException
 import org.json.JSONObject
@@ -55,38 +53,39 @@ class AssetsMasukListActivity : BaseActivity() {
     var selected_id_warehouse: Int = 0
     lateinit var spinnerAdapter: AdapterSpinnerStatus
     lateinit var assetsMasukListAdapter: AssetsMasukListAdapter
-
+    lateinit var binding:  ActivityAssetsMasukListBinding
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_assets_masuk_list)
+        binding = ActivityAssetsMasukListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         timer = Timer()
         pLoading = Loading(this)
 
         setStatusBarGradiantListSearch(this)
 
-        rBack.setOnClickListener(View.OnClickListener { onBackPressed() })
+        binding.rBack.setOnClickListener(View.OnClickListener { onBackPressed() })
 
         setData()
 
 
         // TODO: 25/07/18 detect nested scroll to bottom
-        nestedscrollview.getViewTreeObserver().addOnScrollChangedListener(ViewTreeObserver.OnScrollChangedListener {
-            val totalHeight = nestedscrollview.getChildAt(0).getHeight()
-            val scrollY = nestedscrollview.getScrollY()
-            val isBottomReached = nestedscrollview.canScrollVertically(1)
+        binding.nestedscrollview.getViewTreeObserver().addOnScrollChangedListener(ViewTreeObserver.OnScrollChangedListener {
+            val totalHeight = binding.nestedscrollview.getChildAt(0).getHeight()
+            val scrollY = binding.nestedscrollview.getScrollY()
+            val isBottomReached = binding.nestedscrollview.canScrollVertically(1)
 
             if (!isBottomReached) {
                 if (!isNotLoad) {
-                    pbLoadingBottom.visibility = View.VISIBLE
+                    binding.pbLoadingBottom.visibility = View.VISIBLE
 
                     offset += 20
 
-                    getDataListBarang(lBottomLoading, false)
+                    getDataListBarang(binding.lBottomLoading, false)
 
                 }
             }
@@ -95,7 +94,7 @@ class AssetsMasukListActivity : BaseActivity() {
 
         // TODO search barang
 
-        etSearch.addTextChangedListener(object : TextWatcher {
+        binding.etSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
 
             }
@@ -143,20 +142,20 @@ class AssetsMasukListActivity : BaseActivity() {
         })
 
         // TODO set ime click Search
-        etSearch.setOnEditorActionListener() { v, actionId, event ->
+        binding.etSearch.setOnEditorActionListener() { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 
-                str_keyword_search = etSearch.getText().toString()
+                str_keyword_search = binding.etSearch.getText().toString()
 
                 isNotLoad = false
 
                 hideKeyboardwithoutPopulate(this@AssetsMasukListActivity)
 
-                rvList.visibility = View.GONE
+                binding.rvList.visibility = View.GONE
                 listDataBarang.clear()
                 offset = 0
 
-                getDataListBarang(lLoading, true)
+                getDataListBarang(binding.lLoading, true)
                 //           setVisibleParent()
 
             }
@@ -168,7 +167,7 @@ class AssetsMasukListActivity : BaseActivity() {
     }
 
     private fun getDataWarehouse() {
-        pbLoading.visibility = View.VISIBLE
+        binding.pbLoading.visibility = View.VISIBLE
         val service = ApiClient.getClient()
 
         val idUser = DBS.with(this).idUser.toInt()
@@ -199,7 +198,7 @@ class AssetsMasukListActivity : BaseActivity() {
 
                                 setVisibleEmptyData()
 
-                                pbLoading.visibility = View.GONE
+                                binding.pbLoading.visibility = View.GONE
                             }else{
                                 listWarehouse.clear()
 
@@ -209,9 +208,9 @@ class AssetsMasukListActivity : BaseActivity() {
 
                                 spinnerAdapter = AdapterSpinnerStatus(this@AssetsMasukListActivity, listWarehouse)
                                 spinnerAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
-                                spGudang.setAdapter(spinnerAdapter)
+                                binding.spGudang.setAdapter(spinnerAdapter)
 
-                                spGudang.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                                binding.spGudang.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                                     override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
 
                                         isNotLoad = false
@@ -221,7 +220,7 @@ class AssetsMasukListActivity : BaseActivity() {
                                         listDataBarang.clear()
                                         offset = 0
 
-                                        getDataListBarang(lLoading, false)
+                                        getDataListBarang(binding.lLoading, false)
 
 
                                     }
@@ -232,7 +231,7 @@ class AssetsMasukListActivity : BaseActivity() {
                                 }
 
 
-                                getDataListBarang(lLoading, false)
+                                getDataListBarang(binding.lLoading, false)
                             }
 
                         } else {
@@ -247,7 +246,7 @@ class AssetsMasukListActivity : BaseActivity() {
 
                 } else {
 
-                    pbLoading.visibility = View.GONE
+                    binding.pbLoading.visibility = View.GONE
                     dialogFailure("warehouse",resources.getString(R.string.label_failure_content_server_title),resources.getString(R.string.label_failure_content_server_content))
                  //   See.toast(this@AssetsMasukListActivity, resources.getString(R.string.label_something_wrong))
                 }
@@ -255,7 +254,7 @@ class AssetsMasukListActivity : BaseActivity() {
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
 
-                pbLoading.visibility = View.GONE
+                binding.pbLoading.visibility = View.GONE
                 dialogFailure("warehouse",resources.getString(R.string.label_failure_content1),resources.getString(R.string.label_failure_content2))
             }
         })
@@ -273,7 +272,7 @@ class AssetsMasukListActivity : BaseActivity() {
         call.enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 pbLoading.visibility = View.GONE
-                rvList.visibility = View.VISIBLE
+                binding.rvList.visibility = View.VISIBLE
                 if (response.isSuccessful) {
                     try {
                         val respon = response.body()!!.string()
@@ -359,14 +358,14 @@ class AssetsMasukListActivity : BaseActivity() {
 //        setAnimViewVisible(lParentContent,rvList,0)
 //        lParentEmptyData.visibility = View.GONE
 
-        setAnimViewVisible(lParentContent, rvList, 0)
-        setAnimViewGone(lParentContent, lParentEmptyData, 0)
+        setAnimViewVisible(binding.lParentContent, binding.rvList, 0)
+        setAnimViewGone(binding.lParentContent, binding.layoutEmptyData.lParentEmptyData, 0)
     }
 
     fun setVisibleEmptyData() {
 
-        rvList.visibility = View.GONE
-        setAnimViewVisible(lParentContent, lParentEmptyData, 0)
+        binding.rvList.visibility = View.GONE
+        setAnimViewVisible(binding.lParentContent,binding.layoutEmptyData.lParentEmptyData, 0)
 
     }
 
@@ -376,28 +375,23 @@ class AssetsMasukListActivity : BaseActivity() {
             var dialog = Dialog(this, R.style.DialogLight)
             dialog.window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setContentView(R.layout.dialog_failure_custom)
+            val dialogBinding = DialogFailureCustomBinding.inflate(LayoutInflater.from(this))
+            dialog.setContentView(dialogBinding.root)
             dialog.setCancelable(false)
 
-            val btnBack: Button = dialog.btnBack
-            val btnRefresh: Button = dialog.btnRefresh
+            dialogBinding.tvContent.text = title
+            dialogBinding.tvContent2.text = subTitle
 
-            val tv_Content: TextView = dialog.tv_Content
-            val tvContent2: TextView = dialog.tvContent2
-
-            tv_Content.text = title
-            tvContent2.text = subTitle
-
-            btnBack.setOnClickListener(View.OnClickListener {
+           dialogBinding.btnBack.setOnClickListener(View.OnClickListener {
                 dialog.dismiss()
                 onBackPressed()
             })
 
-            btnRefresh.setOnClickListener(View.OnClickListener {
+           dialogBinding.btnRefresh.setOnClickListener(View.OnClickListener {
                 dialog.dismiss()
                 if (type == "list") {
 
-                    getDataListBarang(lLoading, false)
+                    getDataListBarang(binding.lLoading, false)
                 } else {
                     getDataWarehouse()
                 }
@@ -428,10 +422,8 @@ class AssetsMasukListActivity : BaseActivity() {
     fun setData() {
 
         assetsMasukListAdapter = AssetsMasukListAdapter(this, listDataBarang, this)
-        rvList.setAdapter(assetsMasukListAdapter)
-        val layoutManager = LinearLayoutManager(this)
-        rvList.setLayoutManager(layoutManager)
-        rvList.isNestedScrollingEnabled = false
+        binding.rvList.adapter = assetsMasukListAdapter
+        binding.rvList.isNestedScrollingEnabled = false
 
     }
 
@@ -442,14 +434,14 @@ class AssetsMasukListActivity : BaseActivity() {
         try {
             Handler().postDelayed({
 
-                TransitionManager.beginDelayedTransition(lParentContent)
-                appSpinner.visibility = View.VISIBLE
+                TransitionManager.beginDelayedTransition(binding.lParentContent)
+                binding.appSpinner.visibility = View.VISIBLE
 
 
             }, 400)
         } catch (e: Exception) {
             e.printStackTrace()
-            appSpinner.visibility = View.VISIBLE
+            binding.appSpinner.visibility = View.VISIBLE
         }
 
 
@@ -521,22 +513,19 @@ class AssetsMasukListActivity : BaseActivity() {
         try {
 
             val pDialog = Dialog(this, R.style.DialogLight)
-            pDialog!!.window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
-            pDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            pDialog!!.setContentView(R.layout.item_dialog_tambah_stock_opname)
-            pDialog!!.setCancelable(true)
+            pDialog.window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
+            pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            val binding = ItemDialogTambahStockOpnameBinding.inflate(LayoutInflater.from(this))
+            pDialog.setContentView(binding.root)
+            pDialog.setCancelable(true)
 
-            val etStock = pDialog.etStock
-            val btnTambah = pDialog.btnTambah
+            binding.btnTambah.setOnClickListener(View.OnClickListener {
 
-
-            btnTambah.setOnClickListener(View.OnClickListener {
-
-                val str_stock = etStock.text.toString()
+                val str_stock = binding.etStock.text.toString()
                 if (str_stock == "") {
 
-                    etStock.requestFocus()
-                    etStock.error = resources.getString(R.string.label_form_wajib_diisi)
+                    binding.etStock.requestFocus()
+                    binding.etStock.error = resources.getString(R.string.label_form_wajib_diisi)
                 } else {
 
                     pDialog.dismiss()

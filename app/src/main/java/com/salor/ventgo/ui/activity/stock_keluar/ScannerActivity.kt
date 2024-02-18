@@ -15,11 +15,11 @@ import android.graphics.Point
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.*
 import android.widget.*
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.salor.ventgo.R
 import com.salor.ventgo.helper.Cons
 import com.salor.ventgo.helper.Loading

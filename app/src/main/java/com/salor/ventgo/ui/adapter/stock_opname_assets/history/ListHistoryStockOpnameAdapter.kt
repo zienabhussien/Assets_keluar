@@ -2,13 +2,13 @@ package com.salor.ventgo.ui.adapter.stock_opname_assets.history
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.widget.CardView
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
 
 import com.salor.ventgo.R
 import com.salor.ventgo.helper.Cons
@@ -18,7 +18,8 @@ import com.salor.ventgo.ui.activity.stock_opname_assets.list_scanned_product.Sto
 import com.salor.ventgo.ui.activity.stock_opname_assets.riwayat.StockOpnameHistoryListActivity
 import com.google.gson.Gson
 
-class ListHistoryStockOpnameAdapter(private val context: Activity, private val item_homes: List<RiwayatStockOpnameList>,var stockActivity : StockOpnameHistoryListActivity) : RecyclerView.Adapter<ListHistoryStockOpnameAdapter.MyViewHolder>() {
+class ListHistoryStockOpnameAdapter(private val context: Activity, private val item_homes: List<RiwayatStockOpnameList>,
+                                    var stockActivity : StockOpnameHistoryListActivity) : RecyclerView.Adapter<ListHistoryStockOpnameAdapter.MyViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

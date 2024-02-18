@@ -8,10 +8,10 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputEditText;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 
 
 /**
@@ -22,7 +22,7 @@ import android.view.View;
 public class ExtendedEditText extends TextInputAutoCompleteTextView {
 
     public int DEFAULT_TEXT_COLOR;
-    private OnFocusChangeListener defaultFocusListener;
+    private View.OnFocusChangeListener defaultFocusListener;
     private CompositeListener focusListener = new CompositeListener();
 
     /**

@@ -1,7 +1,6 @@
 package com.salor.ventgo.ui.activity.login
 
 import android.annotation.SuppressLint
-import android.arch.persistence.room.Room
 import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
@@ -10,6 +9,7 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.room.Room
 import androidx.transition.TransitionManager
 import com.salor.ventgo.R
 import com.salor.ventgo.db.DBS

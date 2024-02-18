@@ -6,11 +6,10 @@ import android.content.Intent
 import android.graphics.Point
 import android.os.Bundle
 import android.os.Handler
-import android.support.transition.TransitionManager
-import android.support.v7.widget.LinearLayoutManager
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.*
+import androidx.transition.TransitionManager
 import com.salor.ventgo.R
 import com.salor.ventgo.db.DBS
 import com.salor.ventgo.helper.Cons
@@ -22,10 +21,9 @@ import com.salor.ventgo.service.ApiClient
 import com.salor.ventgo.ui.activity.BaseActivity
 import com.salor.ventgo.ui.adapter.stock_opname_assets.history.ListHistoryStockOpnameAdapter
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_riwayat_list_stock_opname.*
-import kotlinx.android.synthetic.main.dialog_failure_custom.*
-import kotlinx.android.synthetic.main.item_dialog_tambah_stock_opname.*
-import kotlinx.android.synthetic.main.item_empty_data.*
+import com.salor.ventgo.databinding.ActivityRiwayatListStockOpnameBinding
+import com.salor.ventgo.databinding.DialogFailureCustomBinding
+import com.salor.ventgo.databinding.ItemDialogTambahStockOpnameBinding
 import okhttp3.ResponseBody
 import org.json.JSONException
 import org.json.JSONObject
@@ -51,6 +49,7 @@ class StockOpnameHistoryListActivity : BaseActivity() {
     var listSpinnerStatus: ArrayList<String> = ArrayList()
     lateinit var spinnerAdapter: AdapterSpinnerStatus
     lateinit var listHistoryStockOpnameAdapter: ListHistoryStockOpnameAdapter
+    lateinit var binding: ActivityRiwayatListStockOpnameBinding
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
@@ -58,13 +57,14 @@ class StockOpnameHistoryListActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_riwayat_list_stock_opname)
+        binding = ActivityRiwayatListStockOpnameBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         pLoading = Loading(this)
 
         setStatusBarGradiantListSearch(this)
 
-        rBack.setOnClickListener(View.OnClickListener { onBackPressed() })
+        binding.rBack.setOnClickListener(View.OnClickListener { onBackPressed() })
 
 //        setAnimHeader()
 
@@ -82,25 +82,25 @@ class StockOpnameHistoryListActivity : BaseActivity() {
 
         spinnerAdapter = AdapterSpinnerStatus(this, listSpinnerStatus)
         spinnerAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
-        spStatus.setAdapter(spinnerAdapter)
+        binding.spStatus.setAdapter(spinnerAdapter)
 
 
-        spStatus.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.spStatus.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>, view: View, i: Int, l: Long) {
 
                 str_selected_status = listSpinnerStatus.get(i)
 
-                str_keyword_search = etSearch.getText().toString()
+                str_keyword_search = binding.etSearch.getText().toString()
 
                 isNotLoad = false
 
                 hideKeyboardwithoutPopulate(this@StockOpnameHistoryListActivity)
 
-                rvListBarang.visibility = View.GONE
+                binding.rvListBarang.visibility = View.GONE
                 listHistoryOpnameList.clear()
                 offset = 0
 
-                getDataList(lLoading,true)
+                getDataList(binding.lLoading,true)
 
 
             }
@@ -111,18 +111,18 @@ class StockOpnameHistoryListActivity : BaseActivity() {
         }
 
         // TODO: 25/07/18 detect nested scroll to bottom
-        nestedscrollview.getViewTreeObserver().addOnScrollChangedListener(ViewTreeObserver.OnScrollChangedListener {
-            val totalHeight = nestedscrollview.getChildAt(0).getHeight()
-            val scrollY = nestedscrollview.getScrollY()
-            val isBottomReached = nestedscrollview.canScrollVertically(1)
+        binding.nestedscrollview.getViewTreeObserver().addOnScrollChangedListener(ViewTreeObserver.OnScrollChangedListener {
+            val totalHeight = binding.nestedscrollview.getChildAt(0).getHeight()
+            val scrollY = binding.nestedscrollview.getScrollY()
+            val isBottomReached = binding.nestedscrollview.canScrollVertically(1)
 
             if (!isBottomReached) {
                 if (!isNotLoad) {
-                    pbLoadingBottom.visibility = View.VISIBLE
+                    binding.pbLoadingBottom.visibility = View.VISIBLE
 
                     offset += 20
 
-                    getDataList(lBottomLoading,false)
+                    getDataList(binding.lBottomLoading,false)
 
                 }
             }
@@ -130,29 +130,29 @@ class StockOpnameHistoryListActivity : BaseActivity() {
         })
 
         // TODO set ime click Search
-        etSearch.setOnEditorActionListener() { v, actionId, event ->
+        binding.etSearch.setOnEditorActionListener() { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 
-                str_keyword_search = etSearch.getText().toString()
+                str_keyword_search = binding.etSearch.getText().toString()
 
                 isNotLoad = false
 
                 hideKeyboardwithoutPopulate(this@StockOpnameHistoryListActivity)
 
-                rvListBarang.visibility = View.GONE
+                binding.rvListBarang.visibility = View.GONE
                 listHistoryOpnameList.clear()
                 offset = 0
 
-                getDataList(lLoading,true)
+                getDataList(binding.lLoading,true)
             }
             false
         }
 
         setData()
 
-        getDataList(lLoading,false)
+        getDataList(binding.lLoading,false)
 
-        lAddStock.setOnClickListener(View.OnClickListener {
+        binding.lAddStock.setOnClickListener(View.OnClickListener {
             dialogAddStock()
         })
     }
@@ -185,7 +185,7 @@ class StockOpnameHistoryListActivity : BaseActivity() {
         call.enqueue(object : Callback<ResponseBody> {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 pbLoading.visibility = View.GONE
-                rvListBarang.visibility = View.VISIBLE
+                binding.rvListBarang.visibility = View.VISIBLE
                 if (response.isSuccessful) {
                     try {
                         val respon = response.body()!!.string()
@@ -218,7 +218,7 @@ class StockOpnameHistoryListActivity : BaseActivity() {
                             if(!isAnim){
 
                                 setAnimHeader()
-                                lAddStock.visibility = View.VISIBLE
+                                binding.lAddStock.visibility = View.VISIBLE
                             }
 
                             if(offset == 0){
@@ -226,7 +226,7 @@ class StockOpnameHistoryListActivity : BaseActivity() {
                                 if (listData.isEmpty()){
                                     setVisibleEmptyData()
 
-                                    setAnimViewVisible(lParentContent,lAddStock,700)
+                                    setAnimViewVisible(binding.lParentContent,binding.lAddStock,700)
 //                                    lAddStock.visibility = View.VISIBLE
 
                                     return
@@ -250,7 +250,7 @@ class StockOpnameHistoryListActivity : BaseActivity() {
                     }
 
                 } else {
-                    rvListBarang.visibility = View.VISIBLE
+                    binding.rvListBarang.visibility = View.VISIBLE
                     pbLoading.visibility = View.GONE
 
                     dialogFailure("list",resources.getString(R.string.label_failure_content_server_title),resources.getString(R.string.label_failure_content_server_content))
@@ -272,10 +272,8 @@ class StockOpnameHistoryListActivity : BaseActivity() {
     fun setData() {
 
         listHistoryStockOpnameAdapter = ListHistoryStockOpnameAdapter(this, listHistoryOpnameList,this)
-        rvListBarang.setAdapter(listHistoryStockOpnameAdapter)
-        val layoutManager = LinearLayoutManager(this)
-        rvListBarang.setLayoutManager(layoutManager)
-        rvListBarang.isNestedScrollingEnabled = false
+        binding.rvListBarang.setAdapter(listHistoryStockOpnameAdapter)
+        binding.rvListBarang.isNestedScrollingEnabled = false
 
     }
 
@@ -306,12 +304,12 @@ class StockOpnameHistoryListActivity : BaseActivity() {
 
                         if (api_status == Cons.INT_STATUS) {
 
-                            rvListBarang.visibility = View.GONE
+                            binding.rvListBarang.visibility = View.GONE
 
                             listHistoryOpnameList.clear()
                             offset = 0
 
-                            getDataList(lLoading,false)
+                            getDataList(binding.lLoading,false)
 
                         } else {
                             pLoading.dismissDialog()
@@ -343,14 +341,14 @@ class StockOpnameHistoryListActivity : BaseActivity() {
 
     fun setVisibleParent(){
 
-        setAnimViewVisible(lParentContent,rvListBarang,0)
-        setAnimViewGone(lParentContent,lParentEmptyData,0)
+        setAnimViewVisible(binding.lParentContent,binding.rvListBarang,0)
+        setAnimViewGone(binding.lParentContent,binding.itemEmptyData.lParentEmptyData,0)
     }
 
     fun setVisibleEmptyData(){
 
-        rvListBarang.visibility = View.GONE
-        setAnimViewVisible(lParentContent,lParentEmptyData,0)
+        binding.rvListBarang.visibility = View.GONE
+        setAnimViewVisible(binding.lParentContent,binding.itemEmptyData.lParentEmptyData,0)
 
     }
 
@@ -359,12 +357,12 @@ class StockOpnameHistoryListActivity : BaseActivity() {
 
         if (requestCode == Cons.REQ_LIST_SCAN && resultCode == Cons.RES_LIST_SCAN){
 
-            rvListBarang.visibility = View.GONE
+            binding.rvListBarang.visibility = View.GONE
 
             listHistoryOpnameList.clear()
             offset = 0
 
-            getDataList(lLoading,false)
+            getDataList(binding.lLoading,false)
 
         }
 
@@ -376,30 +374,22 @@ class StockOpnameHistoryListActivity : BaseActivity() {
             var dialog = Dialog(this, R.style.DialogLight)
             dialog.window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setContentView(R.layout.dialog_failure_custom)
+            val dialogBinding = DialogFailureCustomBinding.inflate(LayoutInflater.from(this))
+            dialog.setContentView(dialogBinding.root)
             dialog.setCancelable(false)
 
-            val btnBack: Button = dialog.btnBack
-            val btnRefresh: Button = dialog.btnRefresh
 
-            val tv_Content: TextView = dialog.tv_Content
-            val tvContent2: TextView = dialog.tvContent2
-
-            tv_Content.text = title
-            tvContent2.text = subTitle
-
-
-            btnBack.setOnClickListener(View.OnClickListener {
+            dialogBinding.btnBack.setOnClickListener(View.OnClickListener {
                 dialog.dismiss()
                 onBackPressed()
             })
 
-            btnRefresh.setOnClickListener(View.OnClickListener {
+            dialogBinding.btnRefresh.setOnClickListener(View.OnClickListener {
                 dialog.dismiss()
 
                 if (type == "list"){
 
-                    getDataList(lLoading,false)
+                    getDataList(binding.lLoading,false)
                 }else{
                     sendAddDataStockOpname()
                 }
@@ -433,14 +423,14 @@ class StockOpnameHistoryListActivity : BaseActivity() {
         try {
             Handler().postDelayed({
 
-                TransitionManager.beginDelayedTransition(lParentContent)
-                appSpinner.visibility = View.VISIBLE
+                TransitionManager.beginDelayedTransition(binding.lParentContent)
+                binding.appSpinner.visibility = View.VISIBLE
 
 
             }, 700)
         } catch (e: Exception) {
             e.printStackTrace()
-            appSpinner.visibility = View.VISIBLE
+            binding.appSpinner.visibility = View.VISIBLE
         }
 
 
@@ -512,23 +502,22 @@ class StockOpnameHistoryListActivity : BaseActivity() {
         try {
 
             val pDialog = Dialog(this, R.style.DialogLight)
-            pDialog!!.window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
-            pDialog!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            pDialog!!.setContentView(R.layout.item_dialog_tambah_stock_opname)
-            pDialog!!.setCancelable(true)
-
-            val etStock = pDialog.etStock
-            val btnTambah = pDialog.btnTambah
+            pDialog.window!!.attributes.windowAnimations = R.style.PauseDialogAnimation
+            pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            val binding = ItemDialogTambahStockOpnameBinding.inflate(LayoutInflater.from(this))
+            pDialog.setContentView(binding.root)
+            pDialog.setCancelable(true)
 
 
-            btnTambah.setOnClickListener(View.OnClickListener {
 
-                str_name_add_stockopname = etStock.text.toString()
+            binding.btnTambah.setOnClickListener(View.OnClickListener {
+
+                str_name_add_stockopname = binding.etStock.text.toString()
 
                 if (str_name_add_stockopname == "") {
 
-                    etStock.requestFocus()
-                    etStock.error = resources.getString(R.string.label_form_wajib_diisi)
+                    binding.etStock.requestFocus()
+                    binding.etStock.error = resources.getString(R.string.label_form_wajib_diisi)
                 } else {
 
                     pDialog.dismiss()

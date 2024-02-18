@@ -3,18 +3,19 @@ package com.salor.ventgo.ui.activity.assets_keluar.list
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
-import android.support.transition.TransitionManager
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.transition.TransitionManager
 import com.salor.ventgo.R
+import com.salor.ventgo.databinding.ActivityAssetsKeluarDetailAssetsBinding
 import com.salor.ventgo.ui.activity.BaseActivity
 import com.salor.ventgo.ui.adapter.assets_keluar.detail_assets.AssetsKeluarListScanAdapter
-import kotlinx.android.synthetic.main.activity_assets_keluar_detail_assets.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 class DetailAssetsActivity : BaseActivity() {
 
     lateinit var assetsKeluarListScanAdapter:  AssetsKeluarListScanAdapter
+    lateinit var binding :  ActivityAssetsKeluarDetailAssetsBinding
+
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
@@ -22,13 +23,14 @@ class DetailAssetsActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_assets_keluar_detail_assets)
+        binding = ActivityAssetsKeluarDetailAssetsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setStatusBarGradiantListSearch(this)
 
         setData()
 
-        rBack.setOnClickListener(View.OnClickListener { onBackPressed() })
+        binding.rBack.setOnClickListener(View.OnClickListener { onBackPressed() })
 
         setAnimHeader()
     }
@@ -44,10 +46,8 @@ class DetailAssetsActivity : BaseActivity() {
 
 
         assetsKeluarListScanAdapter = AssetsKeluarListScanAdapter(this, listData)
-        rvListGudang.setAdapter(assetsKeluarListScanAdapter)
-        val layoutManager = LinearLayoutManager(this)
-        rvListGudang.setLayoutManager(layoutManager)
-        rvListGudang.isNestedScrollingEnabled = false
+        binding.rvListGudang.setAdapter(assetsKeluarListScanAdapter)
+        binding.rvListGudang.isNestedScrollingEnabled = false
 
     }
 
@@ -57,13 +57,13 @@ class DetailAssetsActivity : BaseActivity() {
         try {
             Handler().postDelayed({
 
-                TransitionManager.beginDelayedTransition(lParentContent)
-                tvDetailScan.visibility = View.VISIBLE
+                TransitionManager.beginDelayedTransition(binding.lParentContent)
+                binding.tvDetailScan.visibility = View.VISIBLE
 
             }, 400)
         } catch (e: Exception) {
             e.printStackTrace()
-            tvDetailScan.visibility = View.VISIBLE
+            binding.tvDetailScan.visibility = View.VISIBLE
         }
 
 
