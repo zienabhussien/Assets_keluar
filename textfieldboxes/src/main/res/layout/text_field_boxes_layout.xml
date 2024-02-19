@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <android.support.v7.widget.AppCompatImageButton
+    <ImageButton
         android:id="@+id/text_field_boxes_imageView"
         android:layout_width="@dimen/icon_signifier_width"
         android:layout_height="@dimen/icon_signifier_height"
@@ -22,6 +22,7 @@
         android:layout_toEndOf="@+id/text_field_boxes_imageView"
         android:layout_toRightOf="@+id/text_field_boxes_imageView">
 
+
         <studio.carbonylgroup.textfieldboxes.ClipToBoundsView
             android:id="@+id/text_field_boxes_panel"
             android:layout_width="wrap_content"
@@ -33,6 +34,7 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground">
+
 
             <FrameLayout
                 android:visibility="gone"
@@ -57,7 +59,7 @@
                 android:paddingRight="@dimen/upper_panel_paddingEnd"
                 android:paddingStart="@dimen/upper_panel_paddingStart">
 
-                <android.support.v7.widget.AppCompatTextView
+                <TextView
                     android:id="@+id/text_field_boxes_label"
                     android:layout_width="wrap_content"
                     android:includeFontPadding="false"
@@ -67,7 +69,7 @@
                     android:textSize="@dimen/label_text_size"
                     tools:text="Label"/>
 
-                <androidx.core.widget.Space
+                <android.widget.Space
                     android:id="@+id/text_field_boxes_label_space"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/label_space_height"
@@ -98,7 +100,7 @@
                         android:layout_gravity="bottom|end"
                         android:orientation="horizontal">
 
-                        <android.support.v7.widget.AppCompatImageButton
+                        <ImageButton
                             android:id="@+id/text_field_boxes_clear_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -108,7 +110,7 @@
                             android:background="?selectableItemBackgroundBorderless"
                             android:visibility="gone"/>
 
-                        <android.support.v7.widget.AppCompatImageButton
+                        <ImageButton
                             android:id="@+id/text_field_boxes_end_icon_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -121,7 +123,7 @@
 
                 </FrameLayout>
 
-                <androidx.core.widget.Space
+                <android.widget.Space
                     android:id="@+id/text_field_boxes_label_space_below"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/label_space_height"
@@ -152,7 +154,7 @@
             android:paddingRight="@dimen/upper_panel_paddingEnd"
             android:paddingStart="@dimen/upper_panel_paddingStart">
 
-            <android.support.v7.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/text_field_boxes_helper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -164,7 +166,7 @@
                 android:layout_toStartOf="@+id/text_field_boxes_counter"
                 android:textSize="@dimen/helper_text_size"/>
 
-            <android.support.v7.widget.AppCompatTextView
+            <TextView
                 android:id="@+id/text_field_boxes_counter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

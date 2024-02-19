@@ -93,6 +93,7 @@
                         app:primaryColor="@color/colorAccent"
                         app:secondaryColor="@color/colorAccent">
 
+
                         <studio.carbonylgroup.textfieldboxes.ExtendedEditText
                             android:id="@+id/etEmail"
                             android:layout_width="match_parent"
@@ -124,6 +125,7 @@
                         app:labelText="@string/label_password_hint"
                         app:primaryColor="@color/colorAccent"
                         app:secondaryColor="@color/colorAccent">
+
 
                         <studio.carbonylgroup.textfieldboxes.ExtendedEditText
                             android:id="@+id/etPassword"
