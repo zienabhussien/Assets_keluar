@@ -14,7 +14,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.annotation.RequiresApi
+
 import androidx.transition.TransitionManager
 import com.salor.ventgo.R
 import com.salor.ventgo.db.DBS
@@ -77,7 +77,6 @@ class ListGudangActivity : BaseActivity() {
         See.logE(Cons.CALLRESPONSE, "" + call.request())
 
         call.enqueue(object : Callback<ResponseBody> {
-            @RequiresApi(Build.VERSION_CODES.KITKAT)
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 pbLoading.visibility = View.GONE
                 if (response.isSuccessful) {
@@ -150,13 +149,12 @@ class ListGudangActivity : BaseActivity() {
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
+
     fun setVisibleParent() {
         setAnimViewVisible(binding.lParentContent, binding.rvList, 0)
         setAnimViewGone(binding.lParentContent, binding.itemEmptyData.lParentEmptyData, 0)
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
     fun setVisibleEmptyData() {
         binding.rvList.visibility = View.GONE
         setAnimViewVisible(binding.lParentContent, binding.itemEmptyData.lParentEmptyData, 0)

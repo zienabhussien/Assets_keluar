@@ -26,8 +26,6 @@ import android.view.inputmethod.InputMethodManager
 import android.webkit.MimeTypeMap
 import android.widget.EditText
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.salor.ventgo.R
 import com.salor.ventgo.helper.See
@@ -81,7 +79,7 @@ open class BaseActivity : AppCompatActivity() {
 //        ITALIC = Typeface.createFromAsset(assets, "fonts/Cabin-Italic.otf")
     }
 
-    fun toast(@StringRes message: Int) {
+    fun toast( message: Int) {
         toast(getString(message))
     }
 
@@ -103,7 +101,7 @@ open class BaseActivity : AppCompatActivity() {
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
+
     fun setAnimViewGone(lParentContent : View, vTarget : View, duration : Long) {
 
         try {

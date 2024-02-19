@@ -5,12 +5,14 @@ import android.annotation.SuppressLint;
 import android.view.Gravity;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
+import javax.annotation.Nonnull;
+
 
 public class GravitySnapHelper extends LinearSnapHelper {
 
@@ -30,7 +32,7 @@ public class GravitySnapHelper extends LinearSnapHelper {
     }
 
     @Override
-    public void attachToRecyclerView(@Nullable RecyclerView recyclerView)
+    public void attachToRecyclerView(@Nonnull RecyclerView recyclerView)
             throws IllegalStateException {
         if (recyclerView != null) {
 //            isSupportRtL = recyclerView.getContext().getResources().getBoolean(R.bool.is_rtl);
@@ -39,8 +41,8 @@ public class GravitySnapHelper extends LinearSnapHelper {
     }
 
     @Override
-    public int[] calculateDistanceToFinalSnap(@NonNull RecyclerView.LayoutManager layoutManager,
-                                              @NonNull View targetView) {
+    public int[] calculateDistanceToFinalSnap(@Nonnull RecyclerView.LayoutManager layoutManager,
+                                              @Nonnull View targetView) {
         int[] out = new int[2];
 
         if (layoutManager.canScrollHorizontally()) {

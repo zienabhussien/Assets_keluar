@@ -16,7 +16,6 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.room.Room
 import com.salor.ventgo.R
 import com.salor.ventgo.databinding.ActivityHomeBinding
@@ -133,7 +132,7 @@ class HomeActivity : BaseActivity() {
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
+
     fun setAnimHeader() {
 
         try {
@@ -266,7 +265,6 @@ class HomeActivity : BaseActivity() {
 
                 }
 
-                @RequiresApi(Build.VERSION_CODES.KITKAT)
                 override fun onPostExecute(user: DataUser) {
                     super.onPostExecute(user)
                     dataUser = user

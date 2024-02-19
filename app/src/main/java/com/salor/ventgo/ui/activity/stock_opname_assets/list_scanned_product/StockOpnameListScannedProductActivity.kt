@@ -17,7 +17,6 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.transition.TransitionManager
 import com.salor.ventgo.R
 import com.salor.ventgo.db.DBS
@@ -163,7 +162,6 @@ class StockOpnameListScannedProductActivity : BaseActivity() {
         See.logE(Cons.CALLRESPONSE, "" + call.request())
 
         call.enqueue(object : Callback<ResponseBody> {
-            @RequiresApi(Build.VERSION_CODES.KITKAT)
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 pbLoading.visibility = View.GONE
                 if (response.isSuccessful) {
@@ -236,13 +234,12 @@ class StockOpnameListScannedProductActivity : BaseActivity() {
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
     fun setVisibleParent() {
         setAnimViewVisible(binding.lParentContent, binding.rvListScan, 0)
         setAnimViewGone(binding.lParentContent, binding.itemEmptyData.lParentEmptyData, 0)
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
+
     fun setVisibleEmptyData() {
         binding.rvListScan.visibility = View.GONE
         setAnimViewVisible(binding.lParentContent, binding.itemEmptyData.lParentEmptyData, 0)

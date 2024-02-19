@@ -145,10 +145,10 @@
 
                             <com.bottlerocketstudios.barcode.generation.ui.BarcodeView
                                 android:id="@+id/ivBarcode"
-                                app:barcode_format="code_39"
-                                android:layout_centerInParent="true"
                                 android:layout_width="100dp"
-                                android:layout_height="65dp"/>
+                                android:layout_height="65dp"
+                                android:layout_centerInParent="true"
+                                app:barcode_format="code_39" />
 
                             <com.tuyenmonkey.mkloader.MKLoader
                                 android:visibility="gone"

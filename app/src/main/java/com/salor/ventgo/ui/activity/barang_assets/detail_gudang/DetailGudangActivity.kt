@@ -5,7 +5,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.transition.TransitionManager
 import com.salor.ventgo.R
 import com.salor.ventgo.helper.Cons
@@ -34,7 +33,7 @@ class DetailGudangActivity : BaseActivity() {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityListBarangDetailGudangBinding.inflate(layoutInflater)

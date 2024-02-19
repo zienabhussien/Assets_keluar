@@ -11,7 +11,6 @@ import android.text.TextWatcher
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.LinearLayout
-import androidx.annotation.RequiresApi
 import androidx.transition.TransitionManager
 import com.salor.ventgo.R
 import com.salor.ventgo.helper.Cons
@@ -164,7 +163,6 @@ class ListBarangActivity : BaseActivity() {
         See.logE(Cons.CALLRESPONSE, "" + call.request())
 
         call.enqueue(object : Callback<ResponseBody> {
-            @RequiresApi(Build.VERSION_CODES.KITKAT)
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 pbLoading.visibility = View.GONE
                 binding.rvListBarang.visibility = View.VISIBLE
@@ -256,14 +254,13 @@ class ListBarangActivity : BaseActivity() {
 
 
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
+
     fun setVisibleParent(){
 
         setAnimViewVisible(binding.lParentContent,binding.rvListBarang,0)
         setAnimViewGone(binding.lParentContent,binding.layoutEmptyData.lParentEmptyData,0)
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
     fun setVisibleEmptyData(){
         binding.rvListBarang.visibility = View.GONE
         setAnimViewVisible(binding.lParentContent, binding.layoutEmptyData.lParentEmptyData,0)

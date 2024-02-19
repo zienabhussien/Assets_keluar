@@ -10,7 +10,6 @@ import android.os.Handler
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.*
-import androidx.annotation.RequiresApi
 import androidx.transition.TransitionManager
 import com.salor.ventgo.R
 import com.salor.ventgo.db.DBS
@@ -102,7 +101,6 @@ class StockMasukListActivity : BaseActivity() {
         See.logE(Cons.CALLRESPONSE, "" + call.request())
 
         call.enqueue(object : Callback<ResponseBody> {
-            @RequiresApi(Build.VERSION_CODES.KITKAT)
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful) {
                     try {
@@ -191,7 +189,6 @@ class StockMasukListActivity : BaseActivity() {
         See.logE(Cons.CALLRESPONSE, "" + call.request())
 
         call.enqueue(object : Callback<ResponseBody> {
-            @RequiresApi(Build.VERSION_CODES.KITKAT)
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 pbLoading.visibility = View.GONE
                 binding.rvList.visibility = View.VISIBLE
@@ -279,13 +276,11 @@ class StockMasukListActivity : BaseActivity() {
         binding.rvList.isNestedScrollingEnabled = false
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
     fun setVisibleParent() {
         setAnimViewVisible(binding.lParentContent, binding.rvList, 0)
         setAnimViewGone(binding.lParentContent, binding.itemEmptyData.lParentEmptyData, 0)
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
     fun setVisibleEmptyData() {
         binding.rvList.visibility = View.GONE
         setAnimViewVisible(binding.lParentContent, binding.itemEmptyData.lParentEmptyData, 0)

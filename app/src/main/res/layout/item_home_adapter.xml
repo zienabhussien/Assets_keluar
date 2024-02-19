@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:foreground="?selectableItemBackground"
         android:id="@+id/cvParent"
         android:layout_width="match_parent"
@@ -91,6 +91,6 @@
         </LinearLayout>
 
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>

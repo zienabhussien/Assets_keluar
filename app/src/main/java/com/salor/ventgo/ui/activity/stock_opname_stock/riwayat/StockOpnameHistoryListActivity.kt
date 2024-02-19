@@ -11,7 +11,6 @@ import android.transition.TransitionManager
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.*
-import androidx.annotation.RequiresApi
 import com.salor.ventgo.R
 import com.salor.ventgo.db.DBS
 import com.salor.ventgo.helper.Cons
@@ -156,7 +155,6 @@ class StockOpnameHistoryListActivity : BaseActivity() {
         See.logE(Cons.CALLRESPONSE, "" + call.request())
 
         call.enqueue(object : Callback<ResponseBody> {
-            @RequiresApi(Build.VERSION_CODES.KITKAT)
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 pbLoading.visibility = View.GONE
                 binding.rvListBarang.visibility = View.VISIBLE
@@ -230,14 +228,12 @@ class StockOpnameHistoryListActivity : BaseActivity() {
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
     fun setVisibleParent() {
 
         setAnimViewVisible(binding.lParentContent, binding.rvListBarang, 0)
         setAnimViewGone(binding.lParentContent, binding.itemEmptyData.lParentEmptyData, 0)
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
     fun setVisibleEmptyData() {
 
         binding.rvListBarang.visibility = View.GONE
@@ -253,7 +249,6 @@ class StockOpnameHistoryListActivity : BaseActivity() {
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
     fun setAnimHeader() {
 
         try {
