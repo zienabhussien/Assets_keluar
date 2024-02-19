@@ -28,7 +28,7 @@ class DetailGudangActivity : BaseActivity() {
 
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+        ;
     }
 
 

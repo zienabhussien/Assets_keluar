@@ -45,8 +45,7 @@ class HomeActivity : BaseActivity() {
     lateinit var tvTitleToolbar : TextView
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
-        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
