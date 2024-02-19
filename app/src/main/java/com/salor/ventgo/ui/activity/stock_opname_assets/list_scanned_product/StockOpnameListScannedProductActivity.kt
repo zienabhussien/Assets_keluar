@@ -18,7 +18,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.transition.TransitionManager
+import com.google.gson.Gson
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.TedPermission
 import com.salor.ventgo.R
+import com.salor.ventgo.databinding.ActivityStockOpnameListScannedProductBinding
+import com.salor.ventgo.databinding.DialogFailureCustomBinding
+import com.salor.ventgo.databinding.ItemDialogStockOpnameUploadDataSuccessBinding
 import com.salor.ventgo.db.DBS
 import com.salor.ventgo.helper.Cons
 import com.salor.ventgo.helper.Loading
@@ -30,19 +36,13 @@ import com.salor.ventgo.service.ApiClient
 import com.salor.ventgo.ui.activity.BaseActivity
 import com.salor.ventgo.ui.activity.stock_opname_assets.list_scanned_product.scan.ScannerActivity
 import com.salor.ventgo.ui.adapter.stock_opname_assets.scanned_product.ListScannedProductStockOpnameAdapter
-import com.google.gson.Gson
-import com.gun0912.tedpermission.PermissionListener
-import com.gun0912.tedpermission.TedPermission
-import com.salor.ventgo.databinding.ActivityStockOpnameListScannedProductBinding
-import com.salor.ventgo.databinding.DialogFailureCustomBinding
-import com.salor.ventgo.databinding.ItemDialogStockOpnameUploadDataSuccessBinding
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import okhttp3.ResponseBody
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.IOException
 
 class StockOpnameListScannedProductActivity : BaseActivity() {
@@ -57,7 +57,7 @@ class StockOpnameListScannedProductActivity : BaseActivity() {
     lateinit var binding: ActivityStockOpnameListScannedProductBinding
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

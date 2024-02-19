@@ -13,22 +13,22 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.transition.TransitionManager
+import com.google.gson.Gson
 import com.salor.ventgo.R
+import com.salor.ventgo.databinding.ActivityForgotPasswordBinding
+import com.salor.ventgo.databinding.ItemDialogForgotPassSuccessBinding
 import com.salor.ventgo.helper.Cons
 import com.salor.ventgo.helper.Loading
 import com.salor.ventgo.helper.See
 import com.salor.ventgo.service.ApiClient
 import com.salor.ventgo.ui.activity.BaseActivity
-import com.google.gson.Gson
-import com.salor.ventgo.databinding.ActivityForgotPasswordBinding
-import com.salor.ventgo.databinding.ItemDialogForgotPassSuccessBinding
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import okhttp3.ResponseBody
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.IOException
 
 class ForgotPasswordActivity : BaseActivity() {
@@ -38,7 +38,7 @@ class ForgotPasswordActivity : BaseActivity() {
     var str_email : String = ""
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

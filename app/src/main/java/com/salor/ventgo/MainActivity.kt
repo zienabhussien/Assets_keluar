@@ -1,5 +1,7 @@
 package com.salor.ventgo
 
+//
+
 import android.content.Context
 import android.os.Bundle
 import android.view.Gravity
@@ -8,13 +10,18 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import com.salor.ventgo.ui.activity.BaseActivity
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+import io.github.inflationx.calligraphy3.CalligraphyConfig
+import io.github.inflationx.calligraphy3.CalligraphyInterceptor
+import io.github.inflationx.viewpump.ViewPump
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
 
 
 class MainActivity : BaseActivity() {
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+        //super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

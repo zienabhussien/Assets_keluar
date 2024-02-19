@@ -28,7 +28,9 @@ import com.salor.ventgo.obj.DataHome
 import com.salor.ventgo.obj.login.DataUser
 import com.salor.ventgo.ui.activity.profile.ProfileActivity
 import com.salor.ventgo.ui.adapter.HomeAdapter
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
+
+//
 
 
 class HomeActivity : BaseActivity() {
@@ -43,7 +45,8 @@ class HomeActivity : BaseActivity() {
     lateinit var tvTitleToolbar : TextView
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

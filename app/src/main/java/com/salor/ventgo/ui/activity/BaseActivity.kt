@@ -29,13 +29,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.salor.ventgo.R
 import com.salor.ventgo.helper.See
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
 
 
 import java.net.MalformedURLException
 import java.net.URL
 import java.text.DecimalFormat
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+//
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileNotFoundException
@@ -67,7 +68,7 @@ open class BaseActivity : AppCompatActivity() {
         }
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

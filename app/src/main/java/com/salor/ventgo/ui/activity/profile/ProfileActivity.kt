@@ -16,11 +16,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.Toast
 import androidx.room.Room
 import androidx.transition.TransitionManager
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.TedPermission
 import com.salor.ventgo.R
+import com.salor.ventgo.databinding.ActivityProfileBinding
+import com.salor.ventgo.databinding.DialogCameraBinding
+import com.salor.ventgo.databinding.ItemDialogLogoutBinding
 import com.salor.ventgo.db.DBS
 import com.salor.ventgo.db.dao_user.Database
 import com.salor.ventgo.helper.Cons
@@ -30,16 +34,10 @@ import com.salor.ventgo.obj.login.DataUser
 import com.salor.ventgo.ui.activity.BaseActivity
 import com.salor.ventgo.ui.activity.login.LoginActivity
 import com.salor.ventgo.ui.activity.profile.camera.UpdateProfileActivity
-import com.gun0912.tedpermission.PermissionListener
-import com.gun0912.tedpermission.TedPermission
-import com.salor.ventgo.databinding.ActivityProfileBinding
-import com.salor.ventgo.databinding.DialogCameraBinding
-import com.salor.ventgo.databinding.ItemDialogLogoutBinding
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import pl.aprilapps.easyphotopicker.DefaultCallback
 import pl.aprilapps.easyphotopicker.EasyImage
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.File
-import java.util.ArrayList
 
 class ProfileActivity : BaseActivity() {
 
@@ -49,7 +47,7 @@ class ProfileActivity : BaseActivity() {
     lateinit var binding: ActivityProfileBinding
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -9,12 +9,13 @@ import com.salor.ventgo.db.DBS
 import com.salor.ventgo.helper.See
 import com.salor.ventgo.ui.activity.BaseActivity
 import com.salor.ventgo.ui.activity.HomeActivity
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
+
 
 class SplashScreenActivity : BaseActivity() {
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

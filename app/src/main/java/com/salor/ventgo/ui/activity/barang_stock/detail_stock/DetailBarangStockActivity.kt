@@ -12,7 +12,10 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.LinearLayout
 import androidx.transition.TransitionManager
+import com.google.gson.Gson
 import com.salor.ventgo.R
+import com.salor.ventgo.databinding.ActivityListBarangStockDetailBinding
+import com.salor.ventgo.databinding.DialogFailureCustomBinding
 import com.salor.ventgo.helper.Cons
 import com.salor.ventgo.helper.See
 import com.salor.ventgo.helper.date.DateTimeMasker
@@ -22,16 +25,13 @@ import com.salor.ventgo.obj.stock_barang_list.detail.WarehouseStock
 import com.salor.ventgo.service.ApiClient
 import com.salor.ventgo.ui.activity.BaseActivity
 import com.salor.ventgo.ui.adapter.barang_stock.detail_list_gudang.ListGudangStockAdapter
-import com.google.gson.Gson
-import com.salor.ventgo.databinding.ActivityListBarangStockDetailBinding
-import com.salor.ventgo.databinding.DialogFailureCustomBinding
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import okhttp3.ResponseBody
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.IOException
 
 class DetailBarangStockActivity : BaseActivity() {
@@ -42,7 +42,7 @@ class DetailBarangStockActivity : BaseActivity() {
     lateinit var binding: ActivityListBarangStockDetailBinding
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

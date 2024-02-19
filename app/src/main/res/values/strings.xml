@@ -319,5 +319,6 @@
 
     <string name="label_empty_data_title">Data is Empty</string>
     <string name="label_empty_data_content">No data is displayed at this time</string>
+    <string name="splash_text">We Make A deferent Way To Control Your Asset</string>
 
 </resources>

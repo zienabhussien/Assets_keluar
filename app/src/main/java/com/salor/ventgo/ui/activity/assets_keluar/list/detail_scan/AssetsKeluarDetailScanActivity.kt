@@ -5,15 +5,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import androidx.transition.TransitionManager
-import com.salor.ventgo.R
+import com.google.gson.Gson
+import com.salor.ventgo.databinding.ActivityAssetsKeluarDetailScanBinding
 import com.salor.ventgo.helper.Cons
 import com.salor.ventgo.helper.date.DateTimeMasker
 import com.salor.ventgo.obj.asset_list_barang_keluar.AssetListBarangKeluar
 import com.salor.ventgo.ui.activity.BaseActivity
-import com.google.gson.Gson
-import com.salor.ventgo.databinding.ActivityAssetsKeluarDetailAssetsBinding
-import com.salor.ventgo.databinding.ActivityAssetsKeluarDetailScanBinding
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
+
 
 class AssetsKeluarDetailScanActivity : BaseActivity() {
 
@@ -21,7 +20,7 @@ class AssetsKeluarDetailScanActivity : BaseActivity() {
     lateinit var binding: ActivityAssetsKeluarDetailScanBinding
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

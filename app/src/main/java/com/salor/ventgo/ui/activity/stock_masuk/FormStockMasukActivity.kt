@@ -23,13 +23,14 @@ import com.salor.ventgo.obj.warehouse_list.WarehouseList
 import com.salor.ventgo.service.ApiClient
 import com.salor.ventgo.ui.activity.BaseActivity
 import com.salor.ventgo.ui.activity.stock_masuk.list.StockMasukListActivity
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import okhttp3.ResponseBody
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+
 import java.io.IOException
 
 class FormStockMasukActivity : BaseActivity() {
@@ -47,7 +48,7 @@ class FormStockMasukActivity : BaseActivity() {
     var listSpinnerTipeQuantity: ArrayList<String> = ArrayList()
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

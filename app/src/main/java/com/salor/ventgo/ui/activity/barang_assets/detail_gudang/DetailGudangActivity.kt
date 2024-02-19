@@ -1,12 +1,13 @@
 package com.salor.ventgo.ui.activity.barang_assets.detail_gudang
 
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import androidx.transition.TransitionManager
+import com.google.gson.Gson
 import com.salor.ventgo.R
+import com.salor.ventgo.databinding.ActivityListBarangDetailGudangBinding
 import com.salor.ventgo.helper.Cons
 import com.salor.ventgo.helper.date.DateTimeMasker
 import com.salor.ventgo.obj.assets_barang_list.BarangAssets
@@ -14,11 +15,8 @@ import com.salor.ventgo.obj.assets_barang_list.detail.DetailItem
 import com.salor.ventgo.obj.assets_barang_list.detail.WarehouseAssets
 import com.salor.ventgo.ui.activity.BaseActivity
 import com.salor.ventgo.ui.adapter.barang_assets.detail_list_barang_scan.ListBarangScanAdapter
-import com.google.gson.Gson
-import com.salor.ventgo.databinding.ActivityListBarangBinding
-import com.salor.ventgo.databinding.ActivityListBarangDetailGudangBinding
-import com.salor.ventgo.databinding.ActivityListBarangStockDetailBinding
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
+
 
 class DetailGudangActivity : BaseActivity() {
 
@@ -30,7 +28,7 @@ class DetailGudangActivity : BaseActivity() {
 
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
 

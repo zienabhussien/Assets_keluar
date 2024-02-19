@@ -7,10 +7,21 @@ import android.graphics.Point
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.*
-import android.widget.*
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import android.view.WindowManager
+import android.widget.ArrayAdapter
+import android.widget.TextView
+import android.widget.Toast
 import androidx.transition.TransitionManager
+import com.google.gson.Gson
 import com.salor.ventgo.R
+import com.salor.ventgo.databinding.ActivityFormAssetsKeluarBinding
+import com.salor.ventgo.databinding.DialogFailureCustomBinding
+import com.salor.ventgo.databinding.ItemDialogStockOpnameUploadDataSuccessBinding
 import com.salor.ventgo.db.DBS
 import com.salor.ventgo.helper.Cons
 import com.salor.ventgo.helper.Loading
@@ -20,18 +31,13 @@ import com.salor.ventgo.obj.warehouse_list.WarehouseList
 import com.salor.ventgo.service.ApiClient
 import com.salor.ventgo.ui.activity.BaseActivity
 import com.salor.ventgo.ui.activity.assets_keluar.list.AssetsKeluarListActivity
-import com.google.gson.Gson
-import com.salor.ventgo.databinding.ActivityFormAssetsKeluarBinding
-import com.salor.ventgo.databinding.ActivityScannerAssetsKeluarBinding
-import com.salor.ventgo.databinding.DialogFailureCustomBinding
-import com.salor.ventgo.databinding.ItemDialogStockOpnameUploadDataSuccessBinding
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import okhttp3.ResponseBody
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.IOException
 
 class FormAssetsKeluarActivity : BaseActivity() {
@@ -46,7 +52,7 @@ class FormAssetsKeluarActivity : BaseActivity() {
     lateinit var binding: ActivityFormAssetsKeluarBinding
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

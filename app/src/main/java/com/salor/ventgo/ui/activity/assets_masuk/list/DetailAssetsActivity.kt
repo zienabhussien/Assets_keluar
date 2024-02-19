@@ -5,12 +5,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import androidx.transition.TransitionManager
-import com.salor.ventgo.R
 import com.salor.ventgo.databinding.ActivityAssetsKeluarDetailAssetsBinding
 import com.salor.ventgo.ui.activity.BaseActivity
 import com.salor.ventgo.ui.adapter.assets_masuk.detail_assets.AssetsMasukListScanAdapter
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
 
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 class DetailAssetsActivity : BaseActivity() {
 
@@ -18,7 +17,7 @@ class DetailAssetsActivity : BaseActivity() {
     lateinit var binding: ActivityAssetsKeluarDetailAssetsBinding
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

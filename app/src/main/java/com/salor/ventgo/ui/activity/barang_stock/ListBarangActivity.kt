@@ -3,7 +3,6 @@ package com.salor.ventgo.ui.activity.barang_stock
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Point
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
@@ -12,23 +11,23 @@ import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.LinearLayout
 import androidx.transition.TransitionManager
+import com.google.gson.Gson
 import com.salor.ventgo.R
+import com.salor.ventgo.databinding.ActivityListBarangStockBinding
+import com.salor.ventgo.databinding.DialogFailureCustomBinding
 import com.salor.ventgo.helper.Cons
 import com.salor.ventgo.helper.See
 import com.salor.ventgo.obj.stock_barang_list.BarangStock
 import com.salor.ventgo.service.ApiClient
 import com.salor.ventgo.ui.activity.BaseActivity
 import com.salor.ventgo.ui.adapter.barang_stock.ListBarangAdapter
-import com.google.gson.Gson
-import com.salor.ventgo.databinding.ActivityListBarangStockBinding
-import com.salor.ventgo.databinding.DialogFailureCustomBinding
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import okhttp3.ResponseBody
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.IOException
 import java.util.*
 
@@ -45,7 +44,7 @@ class ListBarangActivity : BaseActivity() {
     lateinit var binding: ActivityListBarangStockBinding
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -6,14 +6,15 @@ import android.os.Handler
 import android.view.View
 import androidx.transition.TransitionManager
 import com.bottlerocketstudios.barcode.generation.ui.BarcodeView
+import com.google.gson.Gson
 import com.salor.ventgo.R
+import com.salor.ventgo.databinding.ActivityAssetsMasukDetailScanBinding
 import com.salor.ventgo.helper.Cons
 import com.salor.ventgo.helper.date.DateTimeMasker
 import com.salor.ventgo.obj.asset_list_barang_masuk.AssetListBarangMasuk
 import com.salor.ventgo.ui.activity.BaseActivity
-import com.google.gson.Gson
-import com.salor.ventgo.databinding.ActivityAssetsMasukDetailScanBinding
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
+
 
 class AssetsMasukDetailScanActivity : BaseActivity() {
 
@@ -23,7 +24,7 @@ class AssetsMasukDetailScanActivity : BaseActivity() {
     lateinit var binding: ActivityAssetsMasukDetailScanBinding
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

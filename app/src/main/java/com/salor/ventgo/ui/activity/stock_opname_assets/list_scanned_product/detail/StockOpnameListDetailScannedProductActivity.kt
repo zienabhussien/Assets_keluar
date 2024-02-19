@@ -15,7 +15,10 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.transition.TransitionManager
+import com.google.gson.Gson
 import com.salor.ventgo.R
+import com.salor.ventgo.databinding.ActivityStockOpnameDetailScannedProductBinding
+import com.salor.ventgo.databinding.DialogFailureCustomBinding
 import com.salor.ventgo.helper.Cons
 import com.salor.ventgo.helper.Loading
 import com.salor.ventgo.helper.See
@@ -26,13 +29,10 @@ import com.salor.ventgo.obj.riwayat_stock_opname_asset.list_scanned.ListScanned
 import com.salor.ventgo.service.ApiClient
 import com.salor.ventgo.ui.activity.BaseActivity
 import com.salor.ventgo.ui.adapter.stock_opname_assets.scanned_product.detail.ListDetailScannedProductStockOpnameAdapter
-import com.google.gson.Gson
-import com.salor.ventgo.databinding.ActivityStockOpnameDetailScannedProductBinding
-import com.salor.ventgo.databinding.DialogFailureCustomBinding
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import okhttp3.ResponseBody
 import org.json.JSONException
 import org.json.JSONObject
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 import java.io.IOException
 
 class StockOpnameListDetailScannedProductActivity : BaseActivity() {
@@ -47,7 +47,7 @@ class StockOpnameListDetailScannedProductActivity : BaseActivity() {
     lateinit var listScannedProductStockOpnameAdapter: ListDetailScannedProductStockOpnameAdapter
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
